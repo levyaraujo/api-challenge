@@ -10,13 +10,20 @@
         aria-describedby="search-addon"
         v-model="query"
         id="search-box"
-        v-on:keyup.enter="getData"
+        v-on:keyup.enter="query.length >= 4 ? getData() : pass"
       />
-      <button class="btn btn-primary" type="button" @click="getData">
+      <button
+        class="btn btn-primary"
+        type="button"
+        @click="query.length >= 4 ? getData() : pass"
+        :disabled="query.length < 4"
+      >
         <img src="../assets/icons/search.svg" />
       </button>
     </div>
-    <div v-if="infos.length > 0" class="cards">
+    <span v-if="query.length < 4">Digite pelo menos 4 letras</span>
+    <h1 class="message">{{ request_info }}</h1>
+    <div v-show="display" class="cards">
       <div class="card" v-for="item of infos">
         <p v-for="(value, key) in item">
           <span class="key">{{ key }}: </span>
@@ -28,12 +35,15 @@
 </template>
 
 <script>
+import "vue-router";
 import axios from "axios";
 export default {
   data() {
     return {
       query: "",
       infos: [],
+      request_info: null,
+      display: true,
     };
   },
   methods: {
@@ -42,12 +52,19 @@ export default {
         .create({
           baseURL: "http://127.0.0.1:5000/",
           params: {
-            key: this.query,
+            key: this.query.trim(),
           },
         })
         .get("search")
         .then((response) => {
-          if (response.data.length > 0) this.infos = response.data;
+          if (response.data.length > 0) {
+            this.infos = response.data;
+            this.request_info = `A pesquisa encontrou ${this.infos.length} resultados`;
+            this.display = true;
+          } else {
+            this.request_info = "A pesquisa não encontrou resultados. 😥";
+            this.display = false;
+          }
         });
     },
   },
@@ -59,6 +76,7 @@ export default {
   top: 150px;
   position: absolute;
   text-align: center;
+  color: #282828;
 }
 
 #searcher h3 {
@@ -71,13 +89,22 @@ export default {
 }
 
 .search-box {
-  max-width: 600px;
+  max-width: 300px;
+  background: None;
+}
+
+.search-box:hover {
+  border-color: #eeefef;
 }
 
 .btn {
   margin-right: 10px;
   border-radius: 5px;
   margin: 0;
+}
+
+.message {
+  margin-top: 50px;
 }
 
 .cards {
@@ -87,22 +114,32 @@ export default {
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   text-align: left;
+  animation-name: slide;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  transform: translateY(-100px);
 }
 
 .card {
-  box-shadow: 5 3 3px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  background-color: #eeefef;
   line-height: 1.5;
   max-width: 100%;
   padding: 20px;
+  border: 1px solid #f8f9fa;
+  animation-name: slide;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  transform: translateX(-100px);
 }
 
 .key {
-  color: purple;
   font-size: 20px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .value {
-  color: black;
   font-size: 17px;
 }
 
@@ -129,6 +166,16 @@ footer {
   .cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@keyframes slide {
+  from {
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 </style>

@@ -22,6 +22,10 @@ export default {
     "Helvetica Neue", Arial, sans-serif;
 }
 
+body {
+  background-color: #fffefc;
+}
+
 #app {
   display: flex;
   flex-direction: column;
