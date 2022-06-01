@@ -24,8 +24,8 @@
     <span v-if="query.length < 4">Digite pelo menos 4 letras</span>
     <h1 class="message">{{ request_info }}</h1>
     <div v-show="display" class="cards">
-      <div class="card" v-for="item of infos">
-        <p v-for="(value, key) in item">
+      <div class="card" v-for="item of infos" :key="item">
+        <p v-for="(value, key) in item" :key="value">
           <span class="key">{{ key }}: </span>
           <span class="value">{{ value }}</span>
         </p>
@@ -35,7 +35,6 @@
 </template>
 
 <script>
-import "vue-router";
 import axios from "axios";
 export default {
   data() {
@@ -90,7 +89,7 @@ export default {
 }
 
 .search-box {
-  width: 300px;
+  max-width: 300px;
   background: None;
 }
 
