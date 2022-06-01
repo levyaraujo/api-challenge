@@ -1,6 +1,5 @@
 api:
 	flask run
 
-
 front:
-	npm run dev
+	npm run --prefix interface dev
