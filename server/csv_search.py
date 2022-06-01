@@ -1,6 +1,5 @@
 import csv
 import os
-import pandas as pd
 
 #  função que retorna o resultado da busca do usuário no CSV
 def search(key):
