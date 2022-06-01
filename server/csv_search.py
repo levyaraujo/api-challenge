@@ -1,5 +1,5 @@
 import csv
-import sys
+import os
 import pandas as pd
 
 #  função que retorna o resultado da busca do usuário no CSV
@@ -9,7 +9,7 @@ def search(key):
     filtered = []
     if key == None:
         return None
-    with open("relatorio.csv", "r") as csv:
+    with open(os.path.join(os.getcwd(), "server/relatorio.csv"), "r") as csv:
         for index, row in enumerate(csv):
             if index == 0:
                 headers = row.rstrip("\n").split(",")
@@ -18,6 +18,3 @@ def search(key):
                 filtered.append(dict(zip(headers, values)))
 
     return filtered
-
-
-# print(search("para"))
