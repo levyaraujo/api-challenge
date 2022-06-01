@@ -1,6 +1,6 @@
 <template>
-  <div id="searcher">
-    <h3 id="title">Obter dados da planilha de cadastro de operadoras</h3>
+  <main id="searcher">
+    <h3 id="title">Pesquisar dados na tabela</h3>
     <div class="input-group">
       <input
         type="search"
@@ -31,7 +31,7 @@
         </p>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -62,7 +62,7 @@ export default {
             this.request_info = `A pesquisa encontrou ${this.infos.length} resultados`;
             this.display = true;
           } else {
-            this.request_info = "A pesquisa não encontrou resultados. 😥";
+            this.request_info = "Nenhum resultado foi encontrado. 😥";
             this.display = false;
           }
         });
@@ -77,11 +77,16 @@ export default {
   position: absolute;
   text-align: center;
   color: #282828;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
 }
 
-#searcher h3 {
-  margin-bottom: 30px;
-}
+/* #searcher h3 {
+    margin-bottom: 30px;
+  } */
 
 .input-group {
   display: flex;
@@ -104,7 +109,7 @@ export default {
 }
 
 .message {
-  margin-top: 50px;
+  margin-top: 70px;
 }
 
 .cards {
