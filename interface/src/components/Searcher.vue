@@ -84,17 +84,13 @@ export default {
   justify-content: center;
 }
 
-/* #searcher h3 {
-    margin-bottom: 30px;
-  } */
-
 .input-group {
   display: flex;
   justify-content: center;
 }
 
 .search-box {
-  max-width: 300px;
+  width: 300px;
   background: None;
 }
 
