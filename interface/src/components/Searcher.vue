@@ -49,7 +49,7 @@ export default {
     getData: function () {
       axios
         .create({
-          baseURL: "http://127.0.0.1:5000/",
+          baseURL: "http://localhost:5000/",
           params: {
             key: this.query.trim(),
           },
@@ -162,10 +162,17 @@ footer {
   }
 }
 
-@media (max-width: 1100px) {
+@media (min-width: 800px) {
   .cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
