@@ -21,7 +21,7 @@ Plataforma escrita em Python e Vue em que o usuário pode buscar por operadoras 
 
 ## Como instalar e executar ❓
 
-1. Se tiver o git instalado, entre no terminal e digite `git@github.com:levyaraujo/api-challenge.git` ou baixe o [arquivo zip](https://github.com/levyaraujo/api-challenge/archive/refs/heads/main.zip). Extraia a pasta.
+1. Se tiver o git instalado, entre no terminal e digite `git clone https://github.com/levyaraujo/api-challenge.git` ou baixe o [arquivo zip](https://github.com/levyaraujo/api-challenge/archive/refs/heads/main.zip). Extraia a pasta.
 2. Entre na pasta principal do projeto e digite `pip install -r requirements`, em seguida digite `npm install`. Este passo irá instalar todas as dependências do projeto.
 3. Na pasta principal, rode o comando `flask run ` ou `make api` se estiver no Linux, ele irá iniciar o servidor da aplicação. Para iniciar a interface web digite `npm run --prefix interface dev` ou `make front` se estiver no Linux.
 4. Pronto, após rodar os comandos acima acesse a URL http://localhost:3000/ e comece a usar a aplicação.
