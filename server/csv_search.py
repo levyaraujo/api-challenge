@@ -8,7 +8,9 @@ def search(key):
     filtered = []
     if key == None:
         return None
-    with open(os.path.join(os.getcwd(), "server/relatorio.csv"), "r") as csv:
+    with open(
+        os.path.join(os.getcwd(), "server/relatorio.csv"), "r", encoding="ISO-8859-1"
+    ) as csv:
         for index, row in enumerate(csv):
             if index == 0:
                 headers = row.rstrip("\n").split(",")
